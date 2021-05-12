@@ -1,0 +1,4 @@
+﻿Rebuild started...
+1>------ Rebuild All started: Project: KuorsinisDarbas2021, Configuration: Debug Any CPU ------
+1>C:\Users\Bullet\source\repos\KuorsinisDarbas2021\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets(90,5): error MSB3061: Unable to delete file "C:\Users\Bullet\source\repos\KuorsinisDarbas2021\KuorsinisDarbas2021\bin\Debug\chromedriver.exe". Access to the path 'C:\Users\Bullet\source\repos\KuorsinisDarbas2021\KuorsinisDarbas2021\bin\Debug\chromedriver.exe' is denied.
+========== Rebuild All: 0 succeeded, 1 failed, 0 skipped ==========
