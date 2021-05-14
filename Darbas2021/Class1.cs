@@ -14,6 +14,9 @@ namespace Darbas2021
 {
     public class Class1
     {
+
+
+
         [Test]
 
         public static void PiguPageUserRegistrationTest()
@@ -184,6 +187,20 @@ namespace Darbas2021
             Thread.Sleep(1000);
             element.SelectByText("May");
         }
-    
-    }
+
+        /*
+        [Test]
+        public static void testchart()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = "https://pigu.lt/lt/checkout/delivery/customer";
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Window.Maximize();
+
+            IWebElement  phoneInputField = driver.FindElement(By.Id("phone"));
+            phoneInputField.SendKeys("+365661616");
+
+        }
+    */
+        }
 }

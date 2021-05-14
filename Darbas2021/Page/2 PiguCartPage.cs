@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,20 @@ namespace Darbas2021.Page
         private IWebElement RemoveFromCartButton => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[2]/td[6]/a"));
         private IWebElement RemovePopupclick => driver.FindElement(By.Id("modal-remove-from-cart"));
         private IWebElement CartEmptyResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[1]/p"));
-        private IWebElement OrderTitle => driver.FindElement(By.Id("order-title"));
+        private IWebElement OrderTitle => driver.FindElement(By.Id("order-title")); // krepselio pavadinimas
+        private IWebElement CartContinueButton => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/div[3]/div[2]/div[2]/div[2]/div/button"));
 
+        private IWebElement nameInputField => driver.FindElement(By.Id("name"));
+        private IWebElement phoneInputField => driver.FindElement(By.Id("phone"));
+        private IWebElement surnameInputField => driver.FindElement(By.Id("surname"));
+        private IWebElement addressInputField => driver.FindElement(By.Id("address"));
+        private IWebElement postCodeInputField => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div/div/div/form/div[2]/div[5]/div/div/input"));
+        private IWebElement Vilniusselect => driver.FindElement(By.CssSelector("#city_id1"));
+        private IWebElement dropwownclick => driver.FindElement(By.XPath("//*[@id='city_idFilter']"));
+        
 
-
-
-
+        //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("city_idSelect")));
+        private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.XPath("//*[@id='city_idFilter']")));
 
 
         public PiguCartPage(IWebDriver webdriver) : base(webdriver) //konstruktoriumi perduodame driver is base klases
@@ -66,15 +75,15 @@ namespace Darbas2021.Page
         public void IfNotEmptyThanEmptyCartConformation()
 
         {
-            
+
             //ifas neveikia nes jei atidaro puslapi kuriame yra perekes tuomet neberanda pagal ka ifa paleisti neberanda uzraso .
             bool ifas = CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščiass");
-          /*
-            if (CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščiass") || OrderTitle.Text.Contains("krepšelis"))
-            {
+            /*
+              if (CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščiass") || OrderTitle.Text.Contains("krepšelis"))
+              {
 
-            }
-          */
+              }
+            */
 
             if (ifas)
 
@@ -104,6 +113,24 @@ namespace Darbas2021.Page
             */
         }
 
+        public void CartContinueButtonAndClick()
+        {
+            CartContinueButton.Click();
+            nameInputField.SendKeys("kalakala");
+            surnameInputField.SendKeys("BalaBala");
+            phoneInputField.SendKeys("+37000054863");
+            Thread.Sleep(2000);
+           // dropwownclick.Click();
+           // Thread.Sleep(2000);
+
+//            Vilniusselect.Click();
+           // cityDropDown.SelectByValue("1");
+           // cityDropDown.SelectByText("Vilnius");
+            cityDropDown.SelectByIndex(2);
+
+            addressInputField.SendKeys("Vilniaus g");
+            postCodeInputField.SendKeys("1420");
+        }
 
     }
 }

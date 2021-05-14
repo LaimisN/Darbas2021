@@ -11,12 +11,22 @@ namespace Darbas2021.Test
 {
     class PiguCartPageTest : BaseTest 
     {
-        [Test]
-        public static void PiguPagecartItemRemoval()
+
+        public static void LogInToPage()
         {
             PiguCartPage page = new PiguCartPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
+        }
+
+        [Test]
+        public static void PiguPagecartItemRemoval()
+        {
+            // PiguCartPage page = new PiguCartPage(driver);
+            // page.NavigateToDefaultPage();
+            // page.LogInProcedure("testamailas@gmail.com", "test2021");
+            LogInToPage();
+            PiguCartPage page = new PiguCartPage(driver);
             page.IfNotEmptyThanEmptyCartConformation();
            // page.RemoveFromCartOperation();
            // page.EmptyCartConformation();
@@ -24,5 +34,15 @@ namespace Darbas2021.Test
 
             // page.VerificationOfLogedUser("testamailas@gmail.com");
         }
+        [Test]
+        public static void CheckoutDeliveryForm()
+        {
+            LogInToPage();
+            PiguCartPage page = new PiguCartPage(driver);
+            page.CartContinueButtonAndClick();
+           // page.CartContinueButtonAndClick();
+        }
+
+
     }
 }
