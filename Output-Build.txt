@@ -1,4 +1,5 @@
-﻿Rebuild started...
-1>------ Rebuild All started: Project: KuorsinisDarbas2021, Configuration: Debug Any CPU ------
-1>C:\Users\Bullet\source\repos\KuorsinisDarbas2021\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets(90,5): error MSB3061: Unable to delete file "C:\Users\Bullet\source\repos\KuorsinisDarbas2021\KuorsinisDarbas2021\bin\Debug\chromedriver.exe". Access to the path 'C:\Users\Bullet\source\repos\KuorsinisDarbas2021\KuorsinisDarbas2021\bin\Debug\chromedriver.exe' is denied.
-========== Rebuild All: 0 succeeded, 1 failed, 0 skipped ==========
+﻿Build started...
+1>------ Build started: Project: darbas2021, Configuration: Debug Any CPU ------
+1>C:\Users\Bullet\Documents\SCharp\Darbas2021\Darbas2021\Page\CheckboxPage.cs(54,24,54,42): warning CS0618: 'ExpectedConditions' is obsolete: 'The ExpectedConditions implementation in the .NET bindings is deprecated and will be removed in a future release. This portion of the code has been migrated to the DotNetSeleniumExtras repository on GitHub (https://github.com/DotNetSeleniumTools/DotNetSeleniumExtras)'
+1>  darbas2021 -> C:\Users\Bullet\Documents\SCharp\Darbas2021\Darbas2021\bin\Debug\Darbas2021.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

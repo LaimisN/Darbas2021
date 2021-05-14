@@ -56,12 +56,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Driver\Browser.cs" />
+    <Compile Include="Driver\CustomDriver.cs" />
     <Compile Include="NDCheckbox.cs" />
     <Compile Include="Page\CheckboxPage.cs" />
+    <Compile Include="Page\BasePage.cs" />
+    <Compile Include="Page\PiguCartPage.cs" />
     <Compile Include="Page\PiguPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\BaseTest.cs" />
     <Compile Include="Test\CheckboxPageTest.cs" />
+    <Compile Include="Test\PiguCartPageTest.cs" />
     <Compile Include="Test\PiguPageTest.cs" />
+    <Compile Include="Tools\MyScreenshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

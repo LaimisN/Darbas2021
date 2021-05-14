@@ -7,14 +7,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Darbas2021.Test
 {
-    class PiguPageTest
+    class PiguPageTest : BaseTest
     {
-        private static IWebDriver driver;
-
+        //private static IWebDriver driver;
+        /*
         [OneTimeSetUp]
         public static void Setup()
         {
@@ -31,23 +32,51 @@ namespace Darbas2021.Test
         {
             driver.Close();
         }
+        */
         [Test]
 
         public static void NewUserRegistration()
         {
-
+            string UserName = "testamailas21@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string password = "test2021";
             PiguPage page = new PiguPage(driver);
-            page.LogInProcedure("testamailas12@gmail.com", "test2021");// tam kad veiktu reikia pakeisti maila.
-            page.RegistrationProcedure("test2021");
-            page.RegistrationVerification("testamailas12@gmail.com");
+            page.NavigateToDefaultPage();
+            page.LogInProcedure(UserName, password);
+            page.RegistrationProcedure(password);
+            page.RegistrationVerification(UserName);
 
         }
         [Test]
         public static void PiguPageUserLogInTest()
         {
             PiguPage page = new PiguPage(driver);
+            page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
             page.VerificationOfLogedUser("testamailas@gmail.com");
         }
+        [Test]
+        public static void PiguCartInput()
+        {
+            PiguPage page = new PiguPage(driver);
+            page.NavigateToDefaultPage();
+            page.LogInProcedure("testamailas@gmail.com", "test2021");
+             //samsung galaxy s21 prekis idejimas i krepseli
+            page.InputInItemEnterField("samsung galaxy s21");
+            
+            page.SearchForItemNavigationCliks();
+            page.ItemInCartValidation();
+
+        }
+        /*
+        [Test]
+        public static void GoToCart()
+        {
+            PiguPage page = new PiguPage(driver);
+            page.NavigateToDefaultPage();
+            page.LogInProcedure("testamailas@gmail.com", "test2021");
+            // samsung galaxy s21 prekis idejimas i krepseli
+            //page.ItemInCartValidation();
+
+        }*/
     }
 }
