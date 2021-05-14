@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Darbas2021.Test
@@ -11,14 +12,17 @@ namespace Darbas2021.Test
     class PiguCartPageTest : BaseTest 
     {
         [Test]
-        public static void PiguPageUserLogInTest()
+        public static void PiguPagecartItemRemoval()
         {
             PiguCartPage page = new PiguCartPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
+            page.IfNotEmptyThanEmptyCartConformation();
+           // page.RemoveFromCartOperation();
+           // page.EmptyCartConformation();
 
 
-           // page.VerificationOfLogedUser("testamailas@gmail.com");
+            // page.VerificationOfLogedUser("testamailas@gmail.com");
         }
     }
 }
