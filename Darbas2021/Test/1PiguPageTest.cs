@@ -14,30 +14,12 @@ namespace Darbas2021.Test
 {
     class PiguPageTest : BaseTest
     {
-        //private static IWebDriver driver;
-        /*
-        [OneTimeSetUp]
-        public static void Setup()
-        {
-            driver = new ChromeDriver();
-            driver.Url = "https://pigu.lt/lt/";
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            driver.Manage().Window.Maximize();
-
-        }
-
-        [OneTimeTearDown]
-        public static void TearDown()
-        {
-            driver.Close();
-        }
-        */
+        [Order(1)]
         [Test]
 
         public static void NewUserRegistration()
         {
-            string UserName = "testamailas21@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string UserName = "testamailas27@gmail.com";// tam kad veiktu reikia pakeisti maila.
             string password = "test2021";
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
@@ -46,6 +28,7 @@ namespace Darbas2021.Test
             page.RegistrationVerification(UserName);
 
         }
+        [Order(2)]
         [Test]
         public static void PiguPageUserLogInTest()
         {
@@ -54,6 +37,7 @@ namespace Darbas2021.Test
             page.LogInProcedure("testamailas@gmail.com", "test2021");
             page.VerificationOfLogedUser("testamailas@gmail.com");
         }
+        [Order(3)]
         [Test]
         public static void PiguCartInput()
         {
@@ -67,16 +51,6 @@ namespace Darbas2021.Test
             page.ItemInCartValidation();
 
         }
-        /*
-        [Test]
-        public static void GoToCart()
-        {
-            PiguPage page = new PiguPage(driver);
-            page.NavigateToDefaultPage();
-            page.LogInProcedure("testamailas@gmail.com", "test2021");
-            // samsung galaxy s21 prekis idejimas i krepseli
-            //page.ItemInCartValidation();
-
-        }*/
+        
     }
 }

@@ -47,11 +47,19 @@ namespace Darbas2021.Page
                 driver.Url = urlPage;
             }
         }
+
+        [Obsolete]
         public void LogInProcedure(string email, string password)
         {
             //login procedura:
             LoginIcon.Click();
-            // emailFieldInput.Clear();
+            GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
+            //            WebDriverWait wait = new WebDriverWait(driver(), 10);
+            // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
+            //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated("emailFieldInput");
+
+            emailFieldInput.Clear();
             emailFieldInput.SendKeys(email);
             userPasswordFieldInput.SendKeys(password);
             driver.FindElement(By.CssSelector("#passwordCont > div")).Click();// passwordo perziura
@@ -92,21 +100,24 @@ namespace Darbas2021.Page
                                                                                                                                                       // warrantyDropdownList.SelectByValue("5fe196d2ed8680bd085e70ad2d03d0af"); ///????
             Thread.Sleep(1000);
             warrantyDropdown.Click();
-         //   Thread.Sleep(1000);
+            //   Thread.Sleep(1000);
             driver.FindElement(By.Id("insuranceDropdown5fe196d2ed8680bd085e70ad2d03d0af")).Click(); // parenkama 1 metu garantija per dropdowna
             Thread.Sleep(1000);
+
             Actions action = new Actions(driver);
-            action.KeyDown(Keys.ArrowDown);
-           // action.KeyUp(Keys.PageDown);
+            action.SendKeys(Keys.PageDown);
+            action.SendKeys(Keys.PageDown);
+            action.SendKeys(Keys.PageDown);
+            action.SendKeys(Keys.PageDown);
             action.Build().Perform();
             Thread.Sleep(1000);
 
             //driver.FindElement(By.Id("productPage")).Click(); // i krepseli.clik
             driver.FindElement(By.CssSelector("#stickyCartButton > div > button")).Click(); // i krepseli.clik
 
-           // Thread.Sleep(2000);
+            // Thread.Sleep(2000);
             driver.FindElement(By.CssSelector("#continue")).Click();   // testi apsipoirkima.click
-           // Thread.Sleep(1000);
+                                                                       // Thread.Sleep(1000);
 
         }
         public void SelectrForomWarrantyDropdownList()

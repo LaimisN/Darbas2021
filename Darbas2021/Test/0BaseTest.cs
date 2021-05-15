@@ -14,15 +14,12 @@ namespace Darbas2021.Test
     class BaseTest
     {
         protected static IWebDriver driver;
-       // public static BasicCheckboxDemoPage basicCheckboxDemoPage;
-        //public static SelectDropDownListPage selectDropDownPage;
-
+      
         [OneTimeSetUp]
         public static void SetUp()
         {
             driver = CustomDriver.GetChromeDriver();
-           // basicCheckboxDemoPage = new BasicCheckboxDemoPage(driver);
-          //  selectDropDownPage = new SelectDropDownListPage(driver);
+           
         }
 
         [TearDown]

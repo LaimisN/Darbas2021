@@ -1,5 +1,2 @@
 ﻿Build started...
-1>------ Build started: Project: darbas2021, Configuration: Debug Any CPU ------
-1>C:\Users\Bullet\Documents\SCharp\Darbas2021\Darbas2021\Page\CheckboxPage.cs(54,24,54,42): warning CS0618: 'ExpectedConditions' is obsolete: 'The ExpectedConditions implementation in the .NET bindings is deprecated and will be removed in a future release. This portion of the code has been migrated to the DotNetSeleniumExtras repository on GitHub (https://github.com/DotNetSeleniumTools/DotNetSeleniumExtras)'
-1>  darbas2021 -> C:\Users\Bullet\Documents\SCharp\Darbas2021\Darbas2021\bin\Debug\Darbas2021.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build: 0 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
