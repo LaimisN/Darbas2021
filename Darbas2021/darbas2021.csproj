@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Driver\Browser.cs" />
     <Compile Include="Driver\CustomDriver.cs" />
     <Compile Include="Page\0BasePage.cs" />
