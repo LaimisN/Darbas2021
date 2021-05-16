@@ -61,10 +61,14 @@
     <Compile Include="Page\0BasePage.cs" />
     <Compile Include="Page\2PiguCartPage.cs" />
     <Compile Include="Page\1PiguPage.cs" />
+    <Compile Include="Page\3PiguWishListPage.cs" />
+    <Compile Include="Page\Class11.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\0BaseTest.cs" />
     <Compile Include="Test\2PiguCartPageTest.cs" />
     <Compile Include="Test\1PiguPageTest.cs" />
+    <Compile Include="Test\3PiguWishListTeste.cs" />
+    <Compile Include="Test\Class2.cs" />
     <Compile Include="Tools\MyScreenshot.cs" />
   </ItemGroup>
   <ItemGroup>

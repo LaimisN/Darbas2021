@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Page
 {
-    class PiguPage : BasePage
+   public class PiguPage : BasePage
     {
         private const string urlPage = "https://pigu.lt/lt/"; // pasirasome url tam kad permetoda perduotomeme refresinima puslapio kiekvienam testui
 
@@ -33,7 +33,6 @@ namespace Darbas2021.Page
         //private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.CssSelector("#insuranceSliceBlock273370136 > div:nth-child(1) > div:nth-child(6)")); // keiciant preke reikia pakeisti
         private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[6]")); // keiciant preke reikia pakeisti
         // add item to the cart                                                               
-        // private
 
         public PiguPage(IWebDriver webdriver) : base(webdriver)//konstruktoriumi perduodame driver is base klases
         {
