@@ -37,6 +37,8 @@ namespace Darbas2021.Page
 
         private IWebElement NewAReceiverPersonResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[2]/div/div[2]/p[1]/strong"));
         private IWebElement CashTabRadioClick => driver.FindElement(By.Id ("CashTabRadio"));
+        private IWebElement InsuranceCheckBox => driver.FindElement(By.CssSelector ("#insuranceCheckboxPzu273704491 > div:nth-child(1)"));
+
 
 
         //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeSelect")));
@@ -114,6 +116,15 @@ namespace Darbas2021.Page
 
         public void CartContinueNewPersonTakeOrder(string Name, string surname)
         {
+            InsuranceCheckBox.Click();
+            
+            if (InsuranceCheckBox.Selected)
+            {
+                InsuranceCheckBox.Click();
+            }
+            // GetWait().Until(ExpectedConditions.ElementExists(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/div[3]/div[2]/div[2]/div[2]/div/button")));
+            Thread.Sleep(2000);
+
             CartContinueButton.Click();
             //cityDropDown.SelectByValue("3");
             //cityDropDown.SelectByIndex(2);
@@ -128,6 +139,10 @@ namespace Darbas2021.Page
             Continiu2.Click();
             CashTabRadioClick.Click();
             Continiu3.Click();
+        }
+        public void RandomItemSelectTochart()
+        {
+
         }
         public void NewReceivercheckUp(string Name, string surname)
         {
