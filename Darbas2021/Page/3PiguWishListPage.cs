@@ -81,11 +81,12 @@ namespace Darbas2021.Page
 
             check1.Click();
             check2.Click();
+            /*
             foreach (IWebElement singleCheckbox in RekomenduojameCheckBoxas) //suforeachu pazymime visus boxus
             {
                // if (!singleCheckbox.Selected)
                     singleCheckbox.Click();
-            }
+            }*/
             //Thread.Sleep(2000);
             ItemSellectButton.Click();
             try

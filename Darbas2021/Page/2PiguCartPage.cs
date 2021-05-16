@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Darbas2021.Page
 
     {
         private const string urlPage = "https://pigu.lt/lt/cart"; // pasirasome url tam kad permetoda perduotomeme refresinima puslapio kiekvienam testui
-
+        //#guideSite > div.site-header > div > div > div > div.header-bottom > ul > li
         private IWebElement LoginIcon => driver.FindElement(By.CssSelector("#guideSite > div.site-header > div > div > div > div.header-bottom > ul > li > a"));
         private IWebElement emailFieldInput => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]"));
         private IWebElement userPasswordFieldInput => driver.FindElement(By.CssSelector("#passwordCont > input[type=password]"));
@@ -24,7 +25,7 @@ namespace Darbas2021.Page
         //private IWebElement OrderTitle => driver.FindElement(By.Id("order-title")); // krepselio pavadinimas
         private IWebElement CartContinueButton => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/div[3]/div[2]/div[2]/div[2]/div/button"));
 
-       private IWebElement NewPersonClick => driver.FindElement(By.Id("receiver_new_remote_self"));
+        private IWebElement NewPersonClick => driver.FindElement(By.Id("receiver_new_remote_self"));
         private IWebElement nameInputField => driver.FindElement(By.Id("receiver_name"));
         private IWebElement surnameInputField => driver.FindElement(By.Id("receiver_surname"));
         //private IWebElement addressInputField => driver.FindElement(By.Id("address"));
@@ -36,13 +37,18 @@ namespace Darbas2021.Page
         private IWebElement Continiu3 => driver.FindElement(By.CssSelector("#tab-content-Cash > div:nth-child(4) > div:nth-child(1) > button:nth-child(1)"));
 
         private IWebElement NewAReceiverPersonResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[2]/div/div[2]/p[1]/strong"));
-        private IWebElement CashTabRadioClick => driver.FindElement(By.Id ("CashTabRadio"));
-        private IWebElement InsuranceCheckBox => driver.FindElement(By.CssSelector ("#insuranceCheckboxPzu273704491 > div:nth-child(1)"));
+        private IWebElement CashTabRadioClick => driver.FindElement(By.Id("CashTabRadio"));
+        //private IWebElement InsuranceCheckBox => driver.FindElement(By.CssSelector("#insuranceCheckboxPzu273734221 > div"));
+
+        private IWebElement InsuranceCheckBox => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[1]/label/div"));
+
+        private IWebElement LogOutButton => driver.FindElement(By.CssSelector("#guideSite > div.site-header > div > div > div > div.header-bottom > ul > li > div > ul > li > a"));
+
 
 
 
         //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeSelect")));
-         private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeList")));
+        private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeList")));
 
 
         public PiguCartPage(IWebDriver webdriver) : base(webdriver) //konstruktoriumi perduodame driver is base klases
@@ -108,7 +114,7 @@ namespace Darbas2021.Page
 
                 RemoveFromCartOperation();
                 EmptyCartConformation();
-               // Assert.IsTrue(CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščias"), "Tekstas neatitinka arba tavo krepšelis netuščias");
+                // Assert.IsTrue(CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščias"), "Tekstas neatitinka arba tavo krepšelis netuščias");
 
             }
 
@@ -117,7 +123,7 @@ namespace Darbas2021.Page
         public void CartContinueNewPersonTakeOrder(string Name, string surname)
         {
             InsuranceCheckBox.Click();
-            
+
             if (InsuranceCheckBox.Selected)
             {
                 InsuranceCheckBox.Click();
@@ -130,7 +136,7 @@ namespace Darbas2021.Page
             //cityDropDown.SelectByIndex(2);
             //KaunasSelect.Click();
             Thread.Sleep(2000);
-            if (!NewPersonClick.Selected )// jeigu nepaselektintas kitas asmuo paselektinti
+            if (!NewPersonClick.Selected)// jeigu nepaselektintas kitas asmuo paselektinti
             {
                 NewPersonClick.Click();
             }
@@ -140,10 +146,16 @@ namespace Darbas2021.Page
             CashTabRadioClick.Click();
             Continiu3.Click();
         }
-        public void RandomItemSelectTochart()
+        public void LogOutProcedure()
         {
 
+            Actions action = new Actions(driver);
+            action.MoveToElement(LoginIcon);
+            action.Build().Perform();
+            GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#guideSite > div.site-header > div > div > div > div.header-bottom > ul > li > div > ul > li > a")));
+            LogOutButton.Click();
         }
+
         public void NewReceivercheckUp(string Name, string surname)
         {
             Assert.IsTrue(NewAReceiverPersonResult.Text.Contains($"{Name } {surname }"));

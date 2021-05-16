@@ -19,25 +19,39 @@ namespace Darbas2021.Test
 
         public static void NewUserRegistration()
         {
-            string UserName = "testamailas29@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string UserName = "testamailas35@gmail.com";// tam kad veiktu reikia pakeisti maila.
             string password = "test2021";
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure(UserName, password);
             page.RegistrationProcedure(password);
             page.RegistrationVerification(UserName);
-
+            
         }
         [Order(2)]
         [Test]
-        public static void PiguPageUserLogInTest()
+        public static void PiguPageUserLogInLogOutTest()
         {
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
             page.VerificationOfLogedUser("testamailas@gmail.com");
+            page.LogOutProcedure();
+            page.LogOutVerification();
         }
         [Order(3)]
+        [Test]
+        public static void PiguPageUserLogOutTest()
+        {
+            PiguPage page = new PiguPage(driver);
+            page.NavigateToDefaultPage();
+            page.LogInProcedure("testamailas@gmail.com", "test2021");
+
+            page.LogOutProcedure();
+            page.LogOutVerification();
+        }
+
+        [Order(4)]
         [Test]
         public static void PiguCartInput()
         {

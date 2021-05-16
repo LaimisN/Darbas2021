@@ -18,7 +18,7 @@ namespace Darbas2021.Test
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
         }
-
+        [Order(2)]
         [Test]
         public static void PiguPagecartItemRemoval()
         {    
@@ -26,6 +26,7 @@ namespace Darbas2021.Test
             PiguCartPage page = new PiguCartPage(driver);
             page.IfNotEmptyThanEmptyCartConformation(); 
         }
+        [Order(1)]
         [Test]
         public static void CheckoutDeliveryFormReceiverNewPersonComparison()
         {
@@ -36,6 +37,7 @@ namespace Darbas2021.Test
             PiguCartPage page = new PiguCartPage(driver);
             page.CartContinueNewPersonTakeOrder(name, surname);
             page.NewReceivercheckUp(name, surname);
+            page.LogOutProcedure();
         }
 
         //Thread.Sleep(2000);

@@ -17,6 +17,7 @@ namespace Darbas2021.Page
 
 
         //private static IWebDriver driver;
+
         private IWebElement LoginIcon => driver.FindElement(By.CssSelector("#fixedHeaderContainer > div > div > div.header-bottom > ul > li.visitor-login.has-submenu.guide-item"));
         private IWebElement emailFieldInput => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]"));
         private IWebElement userPasswordFieldInput => driver.FindElement(By.CssSelector("#passwordCont > input[type=password]"));
@@ -32,6 +33,11 @@ namespace Darbas2021.Page
         private IWebElement PiguCart => driver.FindElement(By.CssSelector("#cartWidget > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(1)"));
         //private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.CssSelector("#insuranceSliceBlock273370136 > div:nth-child(1) > div:nth-child(6)")); // keiciant preke reikia pakeisti
         private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[6]")); // keiciant preke reikia pakeisti
+        private IWebElement LogOutButton => driver.FindElement(By.CssSelector(".drop-down--dark > li:nth-child(7) > a:nth-child(1)"));
+        private IWebElement LogOutConfirmation => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > h1"));
+
+        
+
         // add item to the cart                                                               
 
         public PiguPage(IWebDriver webdriver) : base(webdriver)//konstruktoriumi perduodame driver is base klases
@@ -119,7 +125,21 @@ namespace Darbas2021.Page
                                                                        // Thread.Sleep(1000);
 
         }
-        public void SelectrForomWarrantyDropdownList()
+        public void LogOutProcedure()
+        {
+            
+            Actions action = new Actions(driver);
+            action.MoveToElement(LoginIcon);
+            action.Build().Perform();
+            GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector(".drop-down--dark > li:nth-child(7) > a:nth-child(1)")));
+            LogOutButton.Click();
+        }
+        public void LogOutVerification()
+        {
+            Assert.IsTrue(LogOutConfirmation.Text.Contains("Prisijungti"));
+
+    }
+    public void SelectrForomWarrantyDropdownList()
         {
             warrantyDropdownList.SelectByValue("5fe196d2ed8680bd085e70ad2d03d0af");
         }
