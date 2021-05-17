@@ -31,30 +31,30 @@ namespace Darbas2021.Page
         //private IWebElement addressInputField => driver.FindElement(By.Id("address"));
         private IWebElement postCodeInputField => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div/div/div/form/div[2]/div[5]/div/div/input"));
         private IWebElement KaunasSelect => driver.FindElement(By.CssSelector("#remote_self_office2"));
-        private IWebElement dropwownclick => driver.FindElement(By.XPath("//*[@id='remote_self_officeList']"));
+       // private IWebElement dropwownclick => driver.FindElement(By.XPath("//*[@id='remote_self_officeList']"));
+        private IWebElement dropwownclick => driver.FindElement(By.Id("remote_self_office")); 
         private IWebElement Continiu2 => driver.FindElement(By.CssSelector("button.btn:nth-child(2)"));
 
         private IWebElement Continiu3 => driver.FindElement(By.CssSelector("#tab-content-Cash > div:nth-child(4) > div:nth-child(1) > button:nth-child(1)"));
 
         private IWebElement NewAReceiverPersonResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[2]/div/div[2]/p[1]/strong"));
         private IWebElement CashTabRadioClick => driver.FindElement(By.Id("CashTabRadio"));
-        //private IWebElement InsuranceCheckBox => driver.FindElement(By.CssSelector("#insuranceCheckboxPzu273734221 > div"));
+        private IWebElement InsuranceCheckBox => driver.FindElement(By.XPath ("//*[starts-with(@id,'insuranceCheckbox')]/div"));
 
-        private IWebElement InsuranceCheckBox => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[1]/label/div"));
+        //private IWebElement InsuranceCheckBox => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[1]/label/div"));
 
         private IWebElement LogOutButton => driver.FindElement(By.CssSelector("#guideSite > div.site-header > div > div > div > div.header-bottom > ul > li > div > ul > li > a"));
 
 
 
-
-        //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeSelect")));
-        private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeList")));
+        private IWebElement cityDropDown => driver.FindElement(By.Id("remote_self_officeFilter"));
+       //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.CssSelector("#remote_self_officeFilter")));
+        //private SelectElement cityDropDown => new SelectElement(driver.FindElement(By.Id("remote_self_officeList"))); 
 
 
         public PiguCartPage(IWebDriver webdriver) : base(webdriver) //konstruktoriumi perduodame driver is base klases
         {
         }
-
         public void NavigateToDefaultPage() // Metodas refresina puslapi pries kiekviena testa
         {
             if (driver.Url != urlPage)
@@ -65,7 +65,6 @@ namespace Darbas2021.Page
 
         public void LogInProcedure(string email, string password)
         {
-            //login procedura:
             LoginIcon.Click();
             GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
             emailFieldInput.Clear();
@@ -74,7 +73,6 @@ namespace Darbas2021.Page
             userPasswordFieldInput.SendKeys(password);
             driver.FindElement(By.CssSelector("#passwordCont > div")).Click();// passwordo perziura
             driver.FindElement(By.XPath("//*[@id='loginModal']/div[1]/div[1]/form/div[4]/input")).Click(); // prisijungti paspaudimas
-
         }
         public void RemoveFromCartOperation()
         {
@@ -87,14 +85,12 @@ namespace Darbas2021.Page
             return this;
         }
         public void IfNotEmptyThanEmptyCartConformation()
-
         {
             bool ifas = false;
             try
             {
                 ifas = CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščias");
                 ifas = true;
-
             }
             catch (Exception)
             {
@@ -102,40 +98,33 @@ namespace Darbas2021.Page
             }
 
             if (ifas)
-
             {
                 EmptyCartConformation();
-
-
                 //Assert.IsTrue(CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščias"), "Tekstas neatitinka arba tavo krepšelis netuščias");
             }
             else
             {
-
                 RemoveFromCartOperation();
                 EmptyCartConformation();
                 // Assert.IsTrue(CartEmptyResult.Text.Contains("Jūsų prekių krepšelis tuščias"), "Tekstas neatitinka arba tavo krepšelis netuščias");
-
             }
 
         }
 
         public void CartContinueNewPersonTakeOrder(string Name, string surname)
         {
-            InsuranceCheckBox.Click();
-
-            if (InsuranceCheckBox.Selected)
+            //InsuranceCheckBox.Click(); //*[@id="insuranceCheckboxPzu273878986"]/div  div[id*='insuranceCheckbox']
+            
+            if (!InsuranceCheckBox.Selected)
             {
                 InsuranceCheckBox.Click();
             }
-            // GetWait().Until(ExpectedConditions.ElementExists(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/div[3]/div[2]/div[2]/div[2]/div/button")));
+            GetWait().Until(ExpectedConditions.ElementToBeClickable(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/div[3]/div[2]/div[2]/div[2]/div/button")));
             Thread.Sleep(2000);
-
             CartContinueButton.Click();
-            //cityDropDown.SelectByValue("3");
-            //cityDropDown.SelectByIndex(2);
-            //KaunasSelect.Click();
-            Thread.Sleep(2000);
+            //cityDropDown.SelectByValue("3"); // 6itame puslapyje neveikia nes tai nera dropdouwnas todel naudotas buvo paklikinimas
+            cityDropDown.SendKeys("Kaune"); ///pasirenkamas kaunas irasant i inputline KAUNE
+            KaunasSelect.Click();
             if (!NewPersonClick.Selected)// jeigu nepaselektintas kitas asmuo paselektinti
             {
                 NewPersonClick.Click();

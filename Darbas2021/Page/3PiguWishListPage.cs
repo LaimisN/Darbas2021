@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,8 +25,8 @@ namespace Darbas2021.Page
         private SelectElement DropDown => new SelectElement(driver.FindElement(By.ClassName("menu.submenu")));//meniu left dropdown????
         private IWebElement SmartWatchButton => driver.FindElement(By.CssSelector(".category-listing > div:nth-child(1) > div:nth-child(1) > div:nth-child(14) > a:nth-child(2)"));
         private IWebElement SamsungButton => driver.FindElement(By.CssSelector("#filter-13730 > ul:nth-child(2) > li:nth-child(4) > a:nth-child(1)"));
-        public IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.ClassName("menu.filters-block-list.flex-column"));
-      //  public IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.Id("filter44551"));
+        private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.ClassName(".menu.filters-block-list.flex-column"));
+        //  public IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.Id("filter44551"));
         //private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.CssSelector("#filter44551 > ul"));
         private IWebElement check1 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(1) > a"));
         private IWebElement check2 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(2) > a"));
@@ -78,16 +79,14 @@ namespace Darbas2021.Page
             SmartWatchButton.Click();
             SamsungButton.Click();
           //  Thread.Sleep(2000);
-
             check1.Click();
             check2.Click();
             /*
             foreach (IWebElement singleCheckbox in RekomenduojameCheckBoxas) //suforeachu pazymime visus boxus
             {
-               // if (!singleCheckbox.Selected)
+                if (!singleCheckbox.Selected)
                     singleCheckbox.Click();
             }*/
-            //Thread.Sleep(2000);
             ItemSellectButton.Click();
             try
             {
@@ -100,7 +99,6 @@ namespace Darbas2021.Page
                 Thread.Sleep(2000);
                 AddToWishListButton.Click();
                 Thread.Sleep(2000);
-               // ReviewListButton.Click();
             }
             ReviewListButton.Click();
             //PopUpCancel.Click();

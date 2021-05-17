@@ -16,10 +16,10 @@ namespace Darbas2021.Test
     {
         [Order(1)]
         [Test]
-
+       
         public static void NewUserRegistration()
         {
-            string UserName = "testamailas35@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string UserName = "testamailas37@gmail.com";// tam kad veiktu reikia pakeisti maila.
             string password = "test2021";
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
