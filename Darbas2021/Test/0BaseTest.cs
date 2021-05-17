@@ -3,6 +3,7 @@ using Darbas2021.Tools;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Darbas2021.Test
         [OneTimeSetUp]
         public static void SetUp()
         {
-            driver = CustomDriver.GetChromeDriver();
+            driver = CustomDriver.GetFirefoxDriver();
         }
         [TearDown]
         public static void TearDownAttribute()

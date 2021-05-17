@@ -35,11 +35,7 @@ namespace Darbas2021.Page
         private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[6]")); // keiciant preke reikia pakeisti
         private IWebElement LogOutButton => driver.FindElement(By.CssSelector(".drop-down--dark > li:nth-child(7) > a:nth-child(1)"));
         private IWebElement LogOutConfirmation => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > h1"));
-
-        
-
-        // add item to the cart                                                               
-
+            
         public PiguPage(IWebDriver webdriver) : base(webdriver)//konstruktoriumi perduodame driver is base klases
         {
             //driver = webdriver;
@@ -59,8 +55,8 @@ namespace Darbas2021.Page
             //login procedura:
             LoginIcon.Click();
             GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
-            //            WebDriverWait wait = new WebDriverWait(driver(), 10);
-            // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //WebDriverWait wait = new WebDriverWait(driver(), 10);
+            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
             //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated("emailFieldInput");
 
@@ -102,7 +98,7 @@ namespace Darbas2021.Page
             //Thread.Sleep(1000);
 
             driver.FindElement(By.CssSelector("div.warranty-card:nth-child(2) > div:nth-child(2) > label:nth-child(1) > span:nth-child(2)")).Click(); // kitame lange paklikinimas i krepseli
-                                                                                                                                                      // warrantyDropdownList.SelectByValue("5fe196d2ed8680bd085e70ad2d03d0af"); ///????
+                                                     
             Thread.Sleep(1000);
             warrantyDropdown.Click();
             //   Thread.Sleep(1000);
