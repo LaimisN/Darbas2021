@@ -19,7 +19,7 @@ namespace Darbas2021.Test
             page.LogInProcedure("testamailas@gmail.com", "test2021");
         }
         [Order(2)]
-        [Test]
+        [Test, Category("Regression Testing")]
         public static void PiguPagecartItemRemoval()
         {    
             LogInToPage();
@@ -27,7 +27,7 @@ namespace Darbas2021.Test
             page.IfNotEmptyThanEmptyCartConformation(); 
         }
         [Order(1)]
-        [Test]
+        [Test, Category("Regression Testing")]
         public static void CheckoutDeliveryFormReceiverNewPersonComparison()
         {
             string name = "Tuktukas";

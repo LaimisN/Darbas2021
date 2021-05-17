@@ -12,14 +12,15 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Test
 {
+   
     class PiguPageTest : BaseTest
     {
         [Order(1)]
-        [Test]
-       
+        [Test, Category("Happy Flow")]
+
         public static void NewUserRegistration()
         {
-            string UserName = "testamailas37@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string UserName = "testamailas40@gmail.com";// tam kad veiktu reikia pakeisti maila.
             string password = "test2021";
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
@@ -29,7 +30,8 @@ namespace Darbas2021.Test
             
         }
         [Order(2)]
-        [Test]
+        [Test, Category("Happy Flow")]
+
         public static void PiguPageUserLogInLogOutTest()
         {
             PiguPage page = new PiguPage(driver);
@@ -40,7 +42,7 @@ namespace Darbas2021.Test
             page.LogOutVerification();
         }
         [Order(3)]
-        [Test]
+        [Test, Category("Happy Flow")]
         public static void PiguPageUserLogOutTest()
         {
             PiguPage page = new PiguPage(driver);
@@ -52,7 +54,7 @@ namespace Darbas2021.Test
         }
 
         [Order(4)]
-        [Test]
+        [Test, Category("Happy Flow")]
         public static void PiguCartInput()
         {
             PiguPage page = new PiguPage(driver);

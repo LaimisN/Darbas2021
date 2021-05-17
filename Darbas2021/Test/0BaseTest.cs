@@ -14,14 +14,11 @@ namespace Darbas2021.Test
     class BaseTest
     {
         protected static IWebDriver driver;
-      
         [OneTimeSetUp]
         public static void SetUp()
         {
             driver = CustomDriver.GetChromeDriver();
-           
         }
-
         [TearDown]
         public static void TearDownAttribute()
         {
@@ -30,7 +27,6 @@ namespace Darbas2021.Test
                 MyScreenshot.TakeScreenshot(driver);
             }
         }
-
         [OneTimeTearDown]
         public static void TearDown()
         {

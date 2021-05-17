@@ -17,7 +17,8 @@ namespace Darbas2021.Test
             page.LogInProcedure("testamailas@gmail.com", "test2021");
         }
 
-        [Test]
+        [Test, Category("Regression Testing")]
+
         public static void PiguWiskListAddandConfirmation()
         {
             LogInToPage();

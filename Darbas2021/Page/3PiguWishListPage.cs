@@ -20,14 +20,9 @@ namespace Darbas2021.Page
         private IWebElement emailFieldInput => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]"));
         private IWebElement userPasswordFieldInput => driver.FindElement(By.CssSelector("#passwordCont > input[type=password]"));
         private IWebElement meniubutton => driver.FindElement(By.CssSelector("#loaded-main-menu > li:nth-child(1) > a:nth-child(1)"));//meniu click
-        private IWebElement KompiuterineTechnikaButton => driver.FindElement(By.Id("#department-48"));//kompiuterine technika click????
-
-        private SelectElement DropDown => new SelectElement(driver.FindElement(By.ClassName("menu.submenu")));//meniu left dropdown????
         private IWebElement SmartWatchButton => driver.FindElement(By.CssSelector(".category-listing > div:nth-child(1) > div:nth-child(1) > div:nth-child(14) > a:nth-child(2)"));
         private IWebElement SamsungButton => driver.FindElement(By.CssSelector("#filter-13730 > ul:nth-child(2) > li:nth-child(4) > a:nth-child(1)"));
-        private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.ClassName(".menu.filters-block-list.flex-column"));
-        //  public IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.Id("filter44551"));
-        //private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.CssSelector("#filter44551 > ul"));
+       // private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.ClassName(".menu.filters-block-list.flex-column"));
         private IWebElement check1 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(1) > a"));
         private IWebElement check2 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(2) > a"));
         private IWebElement ItemSellectButton => driver.FindElement(By.CssSelector("#productBlock32246752 > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > a:nth-child(1) > img:nth-child(1)"));
@@ -37,6 +32,9 @@ namespace Darbas2021.Page
         private IWebElement RemoveContinue => driver.FindElement(By.CssSelector("#continue"));
         private IWebElement PopUpCancel => driver.FindElement(By.CssSelector(".piguclub-popup__reject-link"));
         private IWebElement WishlistItemCountResult => driver.FindElement(By.CssSelector("#menuCount2442046"));
+        private IWebElement IsmaniejiLaikrodziaiSubkategorija => driver.FindElement(By.CssSelector("#filter-13730 > a:nth-child(1)"));
+        private IReadOnlyCollection<IWebElement> AllCheckBoxas => driver.FindElements(By.ClassName("order-up"));
+
 
 
 
@@ -75,7 +73,6 @@ namespace Darbas2021.Page
         {
             meniubutton.Click();
             //DropDown.SelectByText() ;
-           // KompiuterineTechnikaButton.Click();
             SmartWatchButton.Click();
             SamsungButton.Click();
           //  Thread.Sleep(2000);
@@ -101,9 +98,34 @@ namespace Darbas2021.Page
                 Thread.Sleep(2000);
             }
             ReviewListButton.Click();
+            try
+            {
             //PopUpCancel.Click();
-        }
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public void AddItemToWishList2()
+        {
+            meniubutton.Click(); 
+            SmartWatchButton.Click();
+            IsmaniejiLaikrodziaiSubkategorija.Click();
+
+            foreach (IWebElement singleCheckbox in AllCheckBoxas) //suforeachu pazymime visus boxus
+            {
+                //if (!singleCheckbox.Selected)
+                    singleCheckbox.Click();
+            }
+            Thread.Sleep(15000);
+            ItemSellectButton.Click();
+
+            // SmartWatchButton.Click();
+            // SamsungButton.Click();
+        }
         public void WishListItemConformation()
         {
             Assert.IsTrue(WishlistItemCountResult.Text.Contains("1"));
