@@ -11,17 +11,13 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Page
 {
-   public class PiguPage : BasePage
+    public class PiguPage : BasePage
     {
         private const string urlPage = "https://pigu.lt/lt/"; // pasirasome url tam kad permetoda perduotomeme refresinima puslapio kiekvienam testui
-
-
-        //private static IWebDriver driver;
 
         private IWebElement LoginIcon => driver.FindElement(By.CssSelector("#fixedHeaderContainer > div > div > div.header-bottom > ul > li.visitor-login.has-submenu.guide-item"));
         private IWebElement emailFieldInput => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]"));
         private IWebElement userPasswordFieldInput => driver.FindElement(By.CssSelector("#passwordCont > input[type=password]"));
-        private IWebElement logInButton => driver.FindElement(By.XPath("//*[@id='loginModal']/div[1]/div[1]/form/div[4]/input"));
         private IWebElement registrationButton => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(12) > a"));
         private IWebElement registrationButton2 => driver.FindElement(By.CssSelector("#loginModal > div.register-wrapper.clearfix > div.col-1-of-2.register-details > form > div.form-controls > input"));
         private IWebElement userPasswordFielfInput2 => driver.FindElement(By.CssSelector("#passwordContPopupRepeat > input[type=password]"));
@@ -31,11 +27,10 @@ namespace Darbas2021.Page
         private IWebElement warrantyDropdown => driver.FindElement(By.Id("insuranceDropdown"));
         private SelectElement warrantyDropdownList => new SelectElement(driver.FindElement(By.Id("insuranceDropdown")));
         private IWebElement PiguCart => driver.FindElement(By.CssSelector("#cartWidget > a:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(1)"));
-        //private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.CssSelector("#insuranceSliceBlock273370136 > div:nth-child(1) > div:nth-child(6)")); // keiciant preke reikia pakeisti
         private IWebElement PiguCartItemWarantyPriceResult => driver.FindElement(By.XPath("/html/body/div[1]/div[5]/section/div/div[2]/div[2]/div[1]/div[2]/form/div/table/tbody/tr[3]/td[2]/div[1]/div/div[6]")); // keiciant preke reikia pakeisti
         private IWebElement LogOutButton => driver.FindElement(By.CssSelector(".drop-down--dark > li:nth-child(7) > a:nth-child(1)"));
         private IWebElement LogOutConfirmation => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > h1"));
-            
+
         public PiguPage(IWebDriver webdriver) : base(webdriver)//konstruktoriumi perduodame driver is base klases
         {
             //driver = webdriver;
@@ -52,11 +47,10 @@ namespace Darbas2021.Page
         [Obsolete]
         public void LogInProcedure(string email, string password)
         {
-            //login procedura:
             LoginIcon.Click();
             GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
             //WebDriverWait wait = new WebDriverWait(driver(), 10);
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
             //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated("emailFieldInput");
 
@@ -73,8 +67,7 @@ namespace Darbas2021.Page
             userPasswordFielfInput2.SendKeys(password);//pakartoja passworda
             driver.FindElement(By.CssSelector("#agreeCheck > div")).Click(); // paklikina Check boxa
             driver.FindElement(By.CssSelector("#policiesButtonApprove")).Click(); // paklikina Check boxa
-            //paspaudzia registruotis
-            registrationButton2.Click();
+            registrationButton2.Click();//paspaudzia registruotis
         }
         public void RegistrationVerification(string email)
         {
@@ -95,13 +88,9 @@ namespace Darbas2021.Page
         public void SearchForItemNavigationCliks()
         {
             driver.FindElement(By.CssSelector("#productBlock36607961 > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > a:nth-child(1) > img:nth-child(1)")).Click(); //produktoparinkimas.clickinimas
-            //Thread.Sleep(1000);
-
             driver.FindElement(By.CssSelector("div.warranty-card:nth-child(2) > div:nth-child(2) > label:nth-child(1) > span:nth-child(2)")).Click(); // kitame lange paklikinimas i krepseli
-                                                     
             Thread.Sleep(1000);
             warrantyDropdown.Click();
-            //   Thread.Sleep(1000);
             driver.FindElement(By.Id("insuranceDropdown5fe196d2ed8680bd085e70ad2d03d0af")).Click(); // parenkama 1 metu garantija per dropdowna
             Thread.Sleep(1000);
 
@@ -112,18 +101,11 @@ namespace Darbas2021.Page
             action.SendKeys(Keys.PageDown);
             action.Build().Perform();
             Thread.Sleep(1000);
-
-            //driver.FindElement(By.Id("productPage")).Click(); // i krepseli.clik
             driver.FindElement(By.CssSelector("#stickyCartButton > div > button")).Click(); // i krepseli.clik
-
-            // Thread.Sleep(2000);
             driver.FindElement(By.CssSelector("#continue")).Click();   // testi apsipoirkima.click
-                                                                       // Thread.Sleep(1000);
-
         }
         public void LogOutProcedure()
         {
-            
             Actions action = new Actions(driver);
             action.MoveToElement(LoginIcon);
             action.Build().Perform();
@@ -134,18 +116,15 @@ namespace Darbas2021.Page
         {
             Assert.IsTrue(LogOutConfirmation.Text.Contains("Prisijungti"));
 
-    }
-    public void SelectrForomWarrantyDropdownList()
+        }
+        public void SelectrForomWarrantyDropdownList()
         {
             warrantyDropdownList.SelectByValue("5fe196d2ed8680bd085e70ad2d03d0af");
         }
         public void ItemInCartValidation()
         {
             PiguCart.Click();
-            // Thread.Sleep(1000);
-
             Assert.AreEqual("€ 129,00", PiguCartItemWarantyPriceResult.Text, "kaina neatitinka");
-
         }
     }
 }

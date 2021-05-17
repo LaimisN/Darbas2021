@@ -11,7 +11,6 @@ namespace Darbas2021.Test
 {
     class PiguCartPageTest : BaseTest
     {
-
         public static void LogInToPage()
         {
             PiguCartPage page = new PiguCartPage(driver);
@@ -39,8 +38,5 @@ namespace Darbas2021.Test
             page.NewReceivercheckUp(name, surname);
             page.LogOutProcedure();
         }
-
-        //Thread.Sleep(2000);
-
     }
 }

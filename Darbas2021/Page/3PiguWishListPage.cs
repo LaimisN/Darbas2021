@@ -14,15 +14,12 @@ namespace Darbas2021.Page
     class _3PiguWishListPage : BasePage
     {
         private const string urlPage = "https://pigu.lt/lt/"; // pasirasome url tam kad permetoda perduotomeme refresinima puslapio kiekvienam testui
-
-
         private IWebElement LoginIcon => driver.FindElement(By.CssSelector("#fixedHeaderContainer > div > div > div.header-bottom > ul > li.visitor-login.has-submenu.guide-item"));
         private IWebElement emailFieldInput => driver.FindElement(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]"));
         private IWebElement userPasswordFieldInput => driver.FindElement(By.CssSelector("#passwordCont > input[type=password]"));
         private IWebElement meniubutton => driver.FindElement(By.CssSelector("#loaded-main-menu > li:nth-child(1) > a:nth-child(1)"));//meniu click
         private IWebElement SmartWatchButton => driver.FindElement(By.CssSelector(".category-listing > div:nth-child(1) > div:nth-child(1) > div:nth-child(14) > a:nth-child(2)"));
         private IWebElement SamsungButton => driver.FindElement(By.CssSelector("#filter-13730 > ul:nth-child(2) > li:nth-child(4) > a:nth-child(1)"));
-       // private IReadOnlyCollection<IWebElement> RekomenduojameCheckBoxas => driver.FindElements(By.ClassName(".menu.filters-block-list.flex-column"));
         private IWebElement check1 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(1) > a"));
         private IWebElement check2 => driver.FindElement(By.CssSelector("#filter44551 > ul > li:nth-child(2) > a"));
         private IWebElement ItemSellectButton => driver.FindElement(By.CssSelector("#productBlock32246752 > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > a:nth-child(1) > img:nth-child(1)"));
@@ -34,12 +31,6 @@ namespace Darbas2021.Page
         private IWebElement WishlistItemCountResult => driver.FindElement(By.CssSelector("#menuCount2442046"));
         private IWebElement IsmaniejiLaikrodziaiSubkategorija => driver.FindElement(By.CssSelector("#filter-13730 > a:nth-child(1)"));
         private IReadOnlyCollection<IWebElement> AllCheckBoxas => driver.FindElements(By.ClassName("order-up"));
-
-
-
-
-
-
 
         public _3PiguWishListPage(IWebDriver webdriver) : base(webdriver)
         {
@@ -53,29 +44,18 @@ namespace Darbas2021.Page
         }
         public void LogInProcedure(string email, string password)
         {
-            //login procedura:
             LoginIcon.Click();
             GetWait().Until(ExpectedConditions.ElementExists(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
-            //            WebDriverWait wait = new WebDriverWait(driver(), 10);
-            // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.CssSelector("#loginModal > div:nth-child(1) > div.col-1-of-2.login-details > form > div:nth-child(4) > input[type=email]")));
-            //IWebElement element = wait.Until(ExpectedConditions.InvisibilityOfElementLocated("emailFieldInput");
-
             emailFieldInput.Clear();
             emailFieldInput.SendKeys(email);
             userPasswordFieldInput.SendKeys(password);
-            driver.FindElement(By.CssSelector("#passwordCont > div")).Click();// passwordo perziura
             driver.FindElement(By.XPath("//*[@id='loginModal']/div[1]/div[1]/form/div[4]/input")).Click(); // prisijungti paspaudimas
-
         }
-
         public void AddItemToWishList()
         {
             meniubutton.Click();
-            //DropDown.SelectByText() ;
             SmartWatchButton.Click();
             SamsungButton.Click();
-          //  Thread.Sleep(2000);
             check1.Click();
             check2.Click();
             /*
@@ -100,31 +80,14 @@ namespace Darbas2021.Page
             ReviewListButton.Click();
             try
             {
-            //PopUpCancel.Click();
+                GetWait(5).Until(ExpectedConditions.ElementExists(By.CssSelector(".piguclub-popup__reject-link")));
+
+                PopUpCancel.Click();
 
             }
             catch (Exception)
             {
-
-                throw;
             }
-        }
-        public void AddItemToWishList2()
-        {
-            meniubutton.Click(); 
-            SmartWatchButton.Click();
-            IsmaniejiLaikrodziaiSubkategorija.Click();
-
-            foreach (IWebElement singleCheckbox in AllCheckBoxas) //suforeachu pazymime visus boxus
-            {
-                //if (!singleCheckbox.Selected)
-                    singleCheckbox.Click();
-            }
-            Thread.Sleep(15000);
-            ItemSellectButton.Click();
-
-            // SmartWatchButton.Click();
-            // SamsungButton.Click();
         }
         public void WishListItemConformation()
         {

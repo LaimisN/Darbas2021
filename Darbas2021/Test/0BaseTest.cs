@@ -18,7 +18,7 @@ namespace Darbas2021.Test
         [OneTimeSetUp]
         public static void SetUp()
         {
-            driver = CustomDriver.GetFirefoxDriver();
+            driver = CustomDriver.GetChromeDriver();
         }
         [TearDown]
         public static void TearDownAttribute()
