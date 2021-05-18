@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Page
 {
-    public class BasePage
+    public class BasePage2
     {
         protected static IWebDriver driver;
 
-        public BasePage(IWebDriver webdriver)
+        public BasePage2(IWebDriver webdriver)
         {
             driver = webdriver;
         }
@@ -24,8 +24,8 @@ namespace Darbas2021.Page
 
         public WebDriverWait GetWait(int seconds = 10)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
-            return wait;
+           
+           return new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
         }
 
 

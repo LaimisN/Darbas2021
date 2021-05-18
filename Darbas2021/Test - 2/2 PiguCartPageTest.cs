@@ -9,34 +9,40 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Test
 {
-    class PiguCartPageTest : BaseTest
+    class PiguCartPageTest : BaseTest 
     {
+
         public static void LogInToPage()
         {
             PiguCartPage page = new PiguCartPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
         }
-        [Order(2)]
-        [Test, Category("Regression Testing"), Category("Regression ")]
-        public static void PiguPagecartItemRemoval()
-        {    
-            LogInToPage();
-            PiguCartPage page = new PiguCartPage(driver);
-            page.IfNotEmptyThanEmptyCartConformation(); 
-        }
-        [Order(1)]
-        [Test, Category("Regression Testing")]
-        public static void CheckoutDeliveryFormReceiverNewPersonComparison()
-        {
-            string name = "Tuktukas";
-            string surname = "Plaktukas";
 
+        [Test]
+        public static void PiguPagecartItemRemoval()
+        {
+            // PiguCartPage page = new PiguCartPage(driver);
+            // page.NavigateToDefaultPage();
+            // page.LogInProcedure("testamailas@gmail.com", "test2021");
             LogInToPage();
             PiguCartPage page = new PiguCartPage(driver);
-            page.CartContinueNewPersonTakeOrder(name, surname);
-            page.NewReceivercheckUp(name, surname);
-            page.LogOutProcedure();
+            page.IfNotEmptyThanEmptyCartConformation();
+           // page.RemoveFromCartOperation();
+           // page.EmptyCartConformation();
+
+
+            // page.VerificationOfLogedUser("testamailas@gmail.com");
         }
+        [Test]
+        public static void CheckoutDeliveryForm()
+        {
+            LogInToPage();
+            PiguCartPage page = new PiguCartPage(driver);
+            page.CartContinueButtonAndClick();
+           // page.CartContinueButtonAndClick();
+        }
+
+
     }
 }

@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ED0B9DCB-7C62-4850-AB04-3AC7EA576DFC}</ProjectGuid>
+    <ProjectGuid>{2D170C36-CAD5-4C8B-B1F7-AE4B99E51923}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Darbas2021</RootNamespace>
-    <AssemblyName>Darbas2021</AssemblyName>
+    <RootNamespace>darbas2</RootNamespace>
+    <AssemblyName>darbas2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -61,25 +61,16 @@
     <Compile Include="Page - 2\1PiguPage2.cs" />
     <Compile Include="Page - 2\2PiguCartPage2.cs" />
     <Compile Include="Page - 2\3PiguWishListPage2.cs" />
-    <Compile Include="Page\0BasePage.cs" />
-    <Compile Include="Page\2PiguCartPage.cs" />
-    <Compile Include="Page\1PiguPage.cs" />
-    <Compile Include="Page\3PiguWishListPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test - 2\0BaseTest2.cs" />
     <Compile Include="Test - 2\1PiguPageTest2.cs" />
     <Compile Include="Test - 2\2PiguCartPageTest2.cs" />
     <Compile Include="Test - 2\3PiguWishListTeste2.cs" />
-    <Compile Include="Test\0BaseTest.cs" />
-    <Compile Include="Test\2PiguCartPageTest.cs" />
-    <Compile Include="Test\1PiguPageTest.cs" />
-    <Compile Include="Test\3PiguWishListTeste.cs" />
     <Compile Include="Tools\MyScreenshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -89,9 +80,7 @@
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets'))" />
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.IEDriver.3.150.1.2\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.IEDriver.3.150.1.2\build\Selenium.WebDriver.IEDriver.targets'))" />
   </Target>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Import Project="..\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets')" />
-  <Import Project="..\packages\Selenium.WebDriver.IEDriver.3.150.1.2\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.3.150.1.2\build\Selenium.WebDriver.IEDriver.targets')" />
 </Project>

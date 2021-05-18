@@ -12,49 +12,49 @@ using System.Threading.Tasks;
 
 namespace Darbas2021.Test
 {
-   
     class PiguPageTest : BaseTest
     {
-        [Order(1)]
-        [Test, Category("Happy Flow")]
+        //private static IWebDriver driver;
+        /*
+        [OneTimeSetUp]
+        public static void Setup()
+        {
+            driver = new ChromeDriver();
+            driver.Url = "https://pigu.lt/lt/";
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            driver.Manage().Window.Maximize();
+
+        }
+
+        [OneTimeTearDown]
+        public static void TearDown()
+        {
+            driver.Close();
+        }
+        */
+        [Test]
 
         public static void NewUserRegistration()
         {
-            string UserName = "testamailas46@gmail.com";// tam kad veiktu reikia pakeisti maila.
+            string UserName = "testamailas21@gmail.com";// tam kad veiktu reikia pakeisti maila.
             string password = "test2021";
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure(UserName, password);
             page.RegistrationProcedure(password);
             page.RegistrationVerification(UserName);
-            
-        }
-        [Order(2)]
-        [Test, Category("Happy Flow")]
 
-        public static void PiguPageUserLogInLogOutTest()
+        }
+        [Test]
+        public static void PiguPageUserLogInTest()
         {
             PiguPage page = new PiguPage(driver);
             page.NavigateToDefaultPage();
             page.LogInProcedure("testamailas@gmail.com", "test2021");
             page.VerificationOfLogedUser("testamailas@gmail.com");
-            page.LogOutProcedure();
-            page.LogOutVerification();
         }
-        [Order(3)]
-        [Test, Category("Happy Flow")]
-        public static void PiguPageUserLogOutTest()
-        {
-            PiguPage page = new PiguPage(driver);
-            page.NavigateToDefaultPage();
-            page.LogInProcedure("testamailas@gmail.com", "test2021");
-
-            page.LogOutProcedure();
-            page.LogOutVerification();
-        }
-
-        [Order(4)]
-        [Test, Category("Happy Flow")]
+        [Test]
         public static void PiguCartInput()
         {
             PiguPage page = new PiguPage(driver);
@@ -67,6 +67,16 @@ namespace Darbas2021.Test
             page.ItemInCartValidation();
 
         }
-        
+        /*
+        [Test]
+        public static void GoToCart()
+        {
+            PiguPage page = new PiguPage(driver);
+            page.NavigateToDefaultPage();
+            page.LogInProcedure("testamailas@gmail.com", "test2021");
+            // samsung galaxy s21 prekis idejimas i krepseli
+            //page.ItemInCartValidation();
+
+        }*/
     }
 }
